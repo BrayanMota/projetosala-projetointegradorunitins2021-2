@@ -8,4 +8,5 @@ class Room extends Model
 {
   protected $table = 'Rooms';
   protected $fillable = [];
+  
 }
