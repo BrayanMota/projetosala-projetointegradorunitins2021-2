@@ -2,10 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class OfferDiscipline extends Model
 {
-    use HasFactory;
+  protected $table = 'offer_disciplines';
+  protected $fillable = [
+    'semester_id',
+    'weekday_id',
+    'shift_id',
+    'professor_id',
+    'classroom_id',
+    'period',
+    'discipline',
+  ];
 }

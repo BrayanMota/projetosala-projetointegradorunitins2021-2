@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class CurriculumMatrixDiscipline extends Model
 {
-    use HasFactory;
+  protected $table = 'curriculum_matrix_disciplines';
+  protected $fillable = [
+    'name',
+    'curriculum_matrix_id',
+    'period',
+  ];
 }

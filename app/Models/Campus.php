@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Weekday extends Model
+class Campus extends Model
 {
-  protected $table = 'shifts';
+  protected $table = 'Campu';
   protected $fillable = [
     'name',
   ];

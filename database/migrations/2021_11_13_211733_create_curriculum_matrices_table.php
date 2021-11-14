@@ -6,26 +6,28 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCurriculumMatricesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('curriculum_matrices', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('curriculum_matrices', function (Blueprint $table) {
+      $table->id();
+      $table->string('name');
+      $table->foreignId('course_id')->constrained();
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('curriculum_matrices');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::dropIfExists('curriculum_matrices');
+  }
 }

@@ -6,26 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateBuildingsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('buildings', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('buildings', function (Blueprint $table) {
+      $table->id();
+      $table->string('name');
+      $table->bigInteger('campus_id')->unsigned();
+      $table->foreign('campus_id')->on('id')->references('campus')->cascadeOnDelete()->cascadeOnUpdate();
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('buildings');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::dropIfExists('buildings');
+  }
 }

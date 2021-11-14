@@ -6,26 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateSemestersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('semesters', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('semesters', function (Blueprint $table) {
+      $table->id();
+      $table->string('scholl_year');
+      $table->foreignId('course_id')->constrained();
+      $table->foreignId('matrix_curricular_id')->constrained('curriculum_matrices');
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('semesters');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::dropIfExists('semesters');
+  }
 }

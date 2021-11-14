@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class OffeDisciplineTimeOnWeekdays extends Model
 {
-    use HasFactory;
+  protected $table = 'offe_discipline_time_on_weekdays';
+  protected $fillable = [
+    'offer_discipline_id',
+    'position',
+    'active',
+  ];
 }
