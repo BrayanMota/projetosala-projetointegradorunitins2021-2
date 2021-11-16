@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OffeDisciplineTimeOnWeekdays extends Model
+class OfferSubjectTimeOnWeekdays extends Model
 {
-  protected $table = 'offe_discipline_time_on_weekdays';
+  protected $table = 'offer_subject_time_on_weekdays';
   protected $fillable = [
-    'offer_discipline_id',
+    'offer_subject_id',
     'position',
     'active',
   ];

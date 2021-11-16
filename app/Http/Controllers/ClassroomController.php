@@ -11,11 +11,13 @@ class ClassroomController extends Controller
 
   public function __construct(classroomService $classroomService)
   {
+    
     $this->classroomService = $classroomService;
   }
 
   public function store(Request $request)
   {
+    
     $this->classroomService->createData($request->all());
   }
 }

@@ -16,8 +16,7 @@ class CreateBuildingsTable extends Migration
     Schema::create('buildings', function (Blueprint $table) {
       $table->id();
       $table->string('name');
-      $table->bigInteger('campus_id')->unsigned();
-      $table->foreign('campus_id')->on('id')->references('campus')->cascadeOnDelete()->cascadeOnUpdate();
+      $table->foreignId('campus_id')->references('id')->on('campus')->cascadeOnDelete()->cascadeOnUpdate();
       $table->timestamps();
     });
   }

@@ -15,6 +15,7 @@ class CreateClassroomsTable extends Migration
   {
     Schema::create('classrooms', function (Blueprint $table) {
       $table->id();
+      $table->string('name');
       $table->foreignId('building_id')->constrained();
       $table->foreignId('classroom_type_id')->constrained();
       $table->integer('max_students');

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CurriculumMatrixDiscipline extends Model
+class Subjects extends Model
 {
-  protected $table = 'curriculum_matrix_disciplines';
+  protected $table = 'subjects';
   protected $fillable = [
     'name',
     'curriculum_matrix_id',

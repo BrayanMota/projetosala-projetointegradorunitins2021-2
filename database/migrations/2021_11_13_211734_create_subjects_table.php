@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCurriculumMatrixDisciplinesTable extends Migration
+class CreateSubjectsTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCurriculumMatrixDisciplinesTable extends Migration
    */
   public function up()
   {
-    Schema::create('curriculum_matrix_disciplines', function (Blueprint $table) {
+    Schema::create('subjects', function (Blueprint $table) {
       $table->id();
       $table->string('name');
       $table->foreignId('curriculum_matrix_id')->constrained('curriculum_matrices');

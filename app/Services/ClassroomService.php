@@ -5,21 +5,22 @@ namespace App\Services;
 use App\Repositories\Eloquent\ClassroomRepository;
 use Exception;
 
-class classroomService
+class ClassroomService
 {
   private $classroomRepository;
 
   public function __construct(ClassroomRepository $classroomRepository)
   {
-    $this->$classroomRepository = $classroomRepository;
+    $this->classroomRepository = $classroomRepository;
   }
+
   public function createData(array $attr)
   {
     try {
       $classroom = $this->classroomRepository->create($attr);
       return $classroom;
     } catch (Exception $e) {
-      return throw new Exception('Erro ao cadastrar');
+      throw new Exception('Erro ao cadastrar');
     }
   }
 }
