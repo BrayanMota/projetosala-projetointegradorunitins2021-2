@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campus;
-use App\Models\Course;
-use App\Models\CurriculumMatrix;
 use App\Models\Semester;
+use App\Repositories\Eloquent\BaseRepository;
 use Illuminate\Http\Request;
 
 class SemesterController extends Controller
 {
+  private $semesterRepository;
+
+  public function __construct(BaseRepository $baseRepository)
+  {
+    $this->semesterRepository;
+  }
+
   public function index(Request $request)
   {
     $datas = Semester::orderBy('school_year')->get();
