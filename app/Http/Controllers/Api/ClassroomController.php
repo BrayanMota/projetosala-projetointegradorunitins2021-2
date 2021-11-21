@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+<<<<<<< HEAD
 use App\Http\Requests\StoreClassroomRequest;
+=======
+use App\Http\Controllers\Controller;
+>>>>>>> b8137138c93f9f2472340c456514986109a6b8c2
 use App\Models\Classroom;
 use Exception;
 use Illuminate\Http\Request;

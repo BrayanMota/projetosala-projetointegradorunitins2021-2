@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Campus;
 use App\Models\Semester;
 use App\Repositories\Eloquent\SemesterRepository;
@@ -20,14 +21,15 @@ class SemesterController extends Controller
   {
     $datas = Semester::orderBy('school_year')->get();
     $message = $request->session()->get('message');
-    return view('Semester.index', compact('datas', 'message'));
+    // return view('Semester.index', compact('datas', 'message'));
+    return response()->json(['datas'=>$datas, 'message'=>$message]);
   }
 
-  public function create()
-  {
-    $campus_select = Campus::orderBy('name')->get();
-    return view('Semester.create', compact('campus_select'));
-  }
+  // public function create()
+  // {
+  //   $campus_select = Campus::orderBy('name')->get();
+  //   return view('Semester.create', compact('campus_select'));
+  // }
 
   public function store(Request $request)
   {
@@ -37,7 +39,8 @@ class SemesterController extends Controller
       'message',
       'Semestre cadastro com sucesso'
     );
-    return redirect()->route('semester.index');
+    // return redirect()->route('semester.index');
+    return response()->json(['inputs'=>$inputs]);
   }
 
   public function show($id)
@@ -62,6 +65,7 @@ class SemesterController extends Controller
       'message',
       'Semestre removido com sucesso'
     );
-    return redirect()->route('semester.index');
+    // return redirect()->route('semester.index');
+    return response()->json(['semester'=>$semester]);
   }
 }

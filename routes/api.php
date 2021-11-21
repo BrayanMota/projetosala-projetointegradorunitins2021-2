@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/classroom', ['as' => 'post_classroom', 'uses' => 'App\Http\Controllers\ClassroomController@store']);
 
 Route::post('/classroom', [ClassroomController::class, 'store']);
+
+// Rotas do Semester
+Route::get('/api/semester', [SemesterController::class, 'index']);
+Route::post('/api/semester/store', [SemesterController::class, 'store']);
+Route::get('/api/semester/show', [SemesterController::class, 'show']);
+Route::put('/api/semester/update', [SemesterController::class, 'upadate']);

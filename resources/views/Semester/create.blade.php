@@ -49,7 +49,7 @@ Cadastrar Semestre
     axios.get("{{ route('public.campus.courses', 'args') }}".replace('args', x))
       .then(value => {
         const courseSelect = document.getElementById('course_id')
-        for(let course of value.data) {
+        for (let course of value.data) {
           console.log(course)
           const option = document.createElement('option')
           option.value = course.id
