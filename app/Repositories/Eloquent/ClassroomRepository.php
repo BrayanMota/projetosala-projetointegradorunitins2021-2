@@ -4,10 +4,19 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Classroom;
 
-class ClassroomRepository
+class ClassroomRepository extends BaseRepository
 {
+  private $classroom;
+
+  public function __construct(Classroom $classroom)
+  {
+    parent::__construct($classroom);
+    $this->classroom = $classroom;
+  }
+
   public function create(array $attr)
   {
     return Classroom::create($attr);
   }
+
 }
