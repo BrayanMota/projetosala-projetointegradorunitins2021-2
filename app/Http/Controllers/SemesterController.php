@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campus;
+use App\Models\Course;
+use App\Models\CurriculumMatrix;
 use App\Models\Semester;
 use Illuminate\Http\Request;
-use Validator;
 
 class SemesterController extends Controller
 {
   public function index(Request $request)
   {
-    $datas = Semester::query()->orderBy('school_year')->get();
+    $datas = Semester::orderBy('school_year')->get();
     $message = $request->session()->get('message');
     return view('Semester.index', compact('datas', 'message'));
   }
 
   public function create()
   {
-    return view('Semester.create');
+    $campus_select = Campus::orderBy('name')->get();
+    return view('Semester.create', compact('campus_select'));
   }
 
   public function store(Request $request)

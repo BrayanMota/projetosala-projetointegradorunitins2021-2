@@ -1,15 +1,11 @@
 <?php
 
+use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Sail\Console\PublishCommand;
 
-Route::get('/', function () {
-    return response()->json(['Hello' => 'Wolrd']);
-});
+Route::resource('/semester', 'SemesterController');
 
-Route::get('/semester/index', 'App\Http\Controllers\SemesterController@index')->name('semester.index');
+Route::resource('/classroom', 'ClassroomController');
 
-Route::get('/semester/create', 'App\Http\Controllers\SemesterController@create')->name('semester.create');
-
-Route::post('/semester/store', 'App\Http\Controllers\SemesterController@store')->name('semester.store');
-
-Route::delete('/semester/destroy/{id}', 'App\Http\Controllers\SemesterController@destroy')->name('semester.destroy');
+Route::get('/campus/{id}/courses', 'PublicController@getCoursesByCampusId')->name('public.campus.courses');
