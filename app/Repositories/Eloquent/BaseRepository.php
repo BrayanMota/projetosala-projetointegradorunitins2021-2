@@ -19,13 +19,26 @@ class BaseRepository
     return $this->model->create($attr);
   }
 
+  public function update(array $attr, $id)
+  {
+    return $this->model->find($id)
+      ->fill($attr)
+      ->save();
+  }
+
   public function all()
   {
     return $this->model->get();
   }
 
-  public function destroy()
+  public function destroy($id)
   {
-    return $this->model->delete();
+    return $this->model->find()
+      ->delete();
+  }
+
+  public function find($id)
+  {
+    return $this->model->findOrFail($id);
   }
 }

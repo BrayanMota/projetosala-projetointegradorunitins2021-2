@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClassroomRequest;
 use App\Models\Classroom;
+use Exception;
 use Illuminate\Http\Request;
 
 class ClassroomController extends Controller
@@ -25,19 +26,21 @@ class ClassroomController extends Controller
   public function store(StoreClassroomRequest $request)
   {
     $data = $request->all();
-    Classroom::create($inputs);
 
-    try {
-      $classroomRepository->store($data);
-    } catch (Exception $e) {
-
-      return response()->json();
-    }
     $request->session()->flash(
       'message',
       'Sala cadastra com sucesso'
     );
-    return response()->json();
+
+    try {
+      $this->classroomRepository->store($data);
+    } catch (Exception $e) {
+      return response()->json(['message' => $e->getMessage()]);
+    }
+
+    dd(session('message'));
+
+    return response()->json(['message' => session('message')], 201);
   }
   // trabalho do Brayan NÃO APAGUE PF
 
@@ -49,20 +52,28 @@ class ClassroomController extends Controller
 
   public function update(Request $request, $id)
   {
-    $item = Classroom::find($id);
-    $inputs = $request->all();
-    $item->fill($inputs)->save();
-    return response()->json([]);
-  }
-
-  public function destroy(Request $request, $id)
-  {
-    $semester = Classroom::find($id);
-    $semester->delete();
+    $data = $request->all();
+    try {
+      $classroom = $this->classroomRepository->update($data, $id);
+    } catch (Exception $e) {
+      return response()->json(['message' => $e->getMessage()]);
+    }
     $request->session()->flash(
       'message',
       'Sala removida com sucesso'
     );
-    return redirect()->route('classroom.index');
+
+    return response()->json($classroom, 200);
+  }
+
+  public function destroy($id)
+  {
+    try {
+      $this->classroomRepository->destroy($id);
+    } catch (Exception $e) {
+      return response()->json(['message' => $e->getMessage()]);
+    }
+
+    return response()->json('');
   }
 }
