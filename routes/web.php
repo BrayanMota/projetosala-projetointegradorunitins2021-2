@@ -2,17 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return response()->json(['Hello' => 'Wolrd']);
 });
+
+Route::get('/semester/index', 'App\Http\Controllers\SemesterController@index')->name('semester.index');
+
+Route::get('/semester/create', 'App\Http\Controllers\SemesterController@create')->name('semester.create');
+
+Route::post('/semester/store', 'App\Http\Controllers\SemesterController@store')->name('semester.store');
+
+Route::delete('/semester/destroy/{id}', 'App\Http\Controllers\SemesterController@destroy')->name('semester.destroy');

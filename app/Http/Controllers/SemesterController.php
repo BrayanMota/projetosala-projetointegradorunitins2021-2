@@ -4,70 +4,55 @@ namespace App\Http\Controllers;
 
 use App\Models\Semester;
 use Illuminate\Http\Request;
+use Validator;
 
 class SemesterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $data = Semester::all();
-        return response() -> json($data);
-    }
+  public function index(Request $request)
+  {
+    $datas = Semester::query()->orderBy('school_year')->get();
+    $message = $request->session()->get('message');
+    return view('Semester.index', compact('datas', 'message'));
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $inputs = $request -> all();
-        Semester:: create($inputs);
-        return response() -> json([]);
-    }
+  public function create()
+  {
+    return view('Semester.create');
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Semester  $semester
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $item = Semester:: find($id);
-        return response() -> json($item);
-    }
+  public function store(Request $request)
+  {
+    $inputs = $request->all();
+    Semester::create($inputs);
+    $request->session()->flash(
+      'message',
+      'Semestre cadastro com sucesso'
+    );
+    return redirect()->route('semester.index');
+  }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Semester  $semester
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $item = Semester:: find($id);
-        $inputs = $request -> all();
-        $item -> fill($inputs) -> save();
-        return response() -> json([]);
-    }
+  public function show($id)
+  {
+    $item = Semester::find($id);
+    return response()->json($item);
+  }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Semester  $semester
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $item = Semester:: find($id);
-        $item -> delete();
-        return response() -> json([]);
-    }
+  public function update(Request $request, $id)
+  {
+    $item = Semester::find($id);
+    $inputs = $request->all();
+    $item->fill($inputs)->save();
+    return response()->json([]);
+  }
+
+  public function destroy(Request $request, $id)
+  {
+    $semester = Semester::find($id);
+    $semester->delete();
+    $request->session()->flash(
+      'message',
+      'Semestre removido com sucesso'
+    );
+    return redirect()->route('semester.index');
+  }
 }
