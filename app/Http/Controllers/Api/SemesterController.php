@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Campus;
 use App\Models\Semester;
 use App\Repositories\Eloquent\BaseRepository;
