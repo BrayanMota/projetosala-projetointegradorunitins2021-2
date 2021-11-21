@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreClassroomRequest;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
 
 class ClassroomController extends Controller
 {
+  private $classroomRepository;
+
+  public function __construct(Classroom $classroomRepository)
+  {
+    $this->classroomRepository = $classroomRepository;
+  }
+
   public function index(Request $request)
   {
     $datas = Classroom::query()->orderBy('name')->get();
@@ -14,27 +22,30 @@ class ClassroomController extends Controller
     return view('Classroom.index', compact('datas', 'message'));
   }
 
-  public function create()
+  public function store(StoreClassroomRequest $request)
   {
-    return view('Classroom.create');
-  }
-
-  public function store(Request $request)
-  {
-    $inputs = $request->all();
+    $data = $request->all();
     Classroom::create($inputs);
+
+    try {
+      $classroomRepository->store($data);
+    } catch (Exception $e) {
+
+      return response()->json();
+    }
     $request->session()->flash(
       'message',
       'Sala cadastra com sucesso'
     );
-    return redirect()->route('classroom.index');
+    return response()->json();
   }
+  // trabalho do Brayan NÃO APAGUE PF
 
-  public function show($id)
-  {
-    $item = Classroom::find($id);
-    return response()->json($item);
-  }
+  // public function show($id)
+  // {
+  //   $item = Classroom::find($id);
+  //   return response()->json($item, 201);
+  // }
 
   public function update(Request $request, $id)
   {

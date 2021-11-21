@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Campus;
 use App\Models\Semester;
-use App\Repositories\Eloquent\BaseRepository;
+use App\Repositories\Eloquent\SemesterRepository;
 use Illuminate\Http\Request;
 
 class SemesterController extends Controller
 {
   private $semesterRepository;
 
-  public function __construct(BaseRepository $baseRepository)
+  public function __construct(SemesterRepository $semesterRepository)
   {
     $this->semesterRepository;
   }
