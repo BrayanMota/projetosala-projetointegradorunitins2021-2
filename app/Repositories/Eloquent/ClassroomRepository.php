@@ -14,4 +14,9 @@ class ClassroomRepository extends BaseRepository
     $this->classroom = $classroom;
   }
 
+  function list() {
+    return $this->classroom->select(
+      'name',
+    )->get();
+  }
 }

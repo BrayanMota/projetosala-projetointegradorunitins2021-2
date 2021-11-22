@@ -14,4 +14,8 @@ class SemesterRepository extends BaseRepository
     $this->semester = $semester;
   }
 
+  public function listAll()
+  {
+    return $this->semester::orderBy('school_year')->get();
+  }
 }

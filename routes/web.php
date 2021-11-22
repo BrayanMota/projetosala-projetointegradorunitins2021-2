@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers\PublicController;
-use Illuminate\Support\Facades\Route;
 use Laravel\Sail\Console\PublishCommand;
 
-Route::resource('/semester', 'SemesterController');
+// Route::resource('/semester', 'SemesterController');
 
-Route::resource('/classroom', 'ClassroomController');
+// Route::resource('/classroom', 'ClassroomController');
 
-Route::get('/campus/{id}/courses', 'PublicController@getCoursesByCampusId')->name('public.campus.courses');
+// Route::get('/campus/{id}/courses', 'PublicController@getCoursesByCampusId')->name('public.campus.courses');

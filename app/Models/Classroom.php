@@ -13,4 +13,10 @@ class Classroom extends Model
     'classroom_type_id',
     'max_students',
   ];
+
+  public function building()
+  {
+    return $this->hasMany(Building::class, 'id', 'building_id');
+  }
+
 }
