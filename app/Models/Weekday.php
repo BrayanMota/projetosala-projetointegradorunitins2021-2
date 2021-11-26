@@ -10,4 +10,8 @@ class Weekday extends Model
   protected $fillable = [
     'name',
   ];
+
+  public function offer_subjects() {
+    return $this->hasOne(OfferSubject::class);
+  }
 }

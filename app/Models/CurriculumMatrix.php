@@ -9,6 +9,12 @@ class CurriculumMatrix extends Model
   protected $table = 'curriculum_matrices';
   protected $fillable = [
     'name',
-    'course_id',
   ];
+  public function courses() {
+    return $this->hasMany(Courses::class);
+  }
+
+  public function subjects() {
+    return $this->hasMany(Subject::class);
+  }
 }

@@ -11,4 +11,7 @@ class ClassroomType extends Model
     'name',
     'description',
   ];
+  public function classrooms() {
+    return $this->hasMany(Classroom::class);
+  }
 }

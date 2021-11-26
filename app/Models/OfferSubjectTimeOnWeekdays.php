@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OfferSubjectTimeOnWeekdays extends Model
+class OfferSubjectTimeOnWeekday extends Model
 {
   protected $table = 'offer_subject_time_on_weekdays';
   protected $fillable = [
@@ -12,4 +12,8 @@ class OfferSubjectTimeOnWeekdays extends Model
     'position',
     'active',
   ];
+
+  public function offer_subjects() {
+    return $this->hasOne(OfferSubject::class);
+  }
 }

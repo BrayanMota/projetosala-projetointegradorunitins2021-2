@@ -14,9 +14,16 @@ class Classroom extends Model
     'max_students',
   ];
 
-  public function building()
+  public function buildings()
   {
-    return $this->hasMany(Building::class, 'id', 'building_id');
+    return $this->belongsTo(Building::class, 'building_id');
+  }
+  
+  public function classroom_types(){
+    return $this->belongsTo(ClassroomType::class, 'classroom_type_id');
   }
 
+  public function offer_subjects() {
+    return $this->hasOne(OfferSubject::class);
+  }
 }

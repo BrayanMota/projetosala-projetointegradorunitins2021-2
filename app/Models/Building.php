@@ -11,4 +11,12 @@ class Building extends Model
     'name',
     'campus_id',
   ];
+
+  public function campus(){
+    return $this->belongsTo(Campus::class, 'campus_id');
+  }
+
+  public function classrooms(){
+    return $this->hasMany(Classroom::class);
+  }
 }
