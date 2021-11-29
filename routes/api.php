@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ClassroomController;
 use App\Http\Controllers\Api\ClassroomTypeController;
 use App\Http\Controllers\Api\SemesterController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\GoogleLoginController;
 
 /*
 |--------------------------------------------------------------------------
