@@ -16,7 +16,7 @@ class CreateCurriculumMatricesTable extends Migration
     Schema::create('curriculum_matrices', function (Blueprint $table) {
       $table->id();
       $table->string('name');
-      $table->foreignId('course_id')->constrained();
+      $table->foreignId('course_id')->constrained('courses')->cascadeOnDelete()->cascadeOnUpdate();;
       $table->timestamps();
     });
   }

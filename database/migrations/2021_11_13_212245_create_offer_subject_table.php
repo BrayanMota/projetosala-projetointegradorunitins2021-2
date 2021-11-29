@@ -15,12 +15,12 @@ class CreateOfferSubjectTable extends Migration
   {
     Schema::create('offer_subjects', function (Blueprint $table) {
       $table->id();
-      $table->foreignId('semester_id')->constrained();
-      $table->foreignId('weekday_id')->constrained();
-      $table->foreignId('shift_id')->constrained();
-      $table->foreignId('professor_id')->constrained();
-      $table->foreignId('classroom_id')->constrained();
-      $table->foreignId('subject_id')->constrained();
+      $table->foreignId('semester_id')->constrained('semesters')->cascadeOnDelete()->cascadeOnUpdate();
+      $table->foreignId('weekday_id')->constrained('weekdays')->cascadeOnDelete()->cascadeOnUpdate();
+      $table->foreignId('shift_id')->constrained('shifts')->cascadeOnDelete()->cascadeOnUpdate();
+      $table->foreignId('professor_id')->constrained('professors')->cascadeOnDelete()->cascadeOnUpdate();
+      $table->foreignId('classroom_id')->constrained('classrooms')->cascadeOnDelete()->cascadeOnUpdate();
+      $table->foreignId('subject_id')->constrained('subjects')->cascadeOnDelete()->cascadeOnUpdate();
       $table->timestamps();
     });
   }
