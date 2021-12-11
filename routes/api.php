@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ClassroomController;
 use App\Http\Controllers\Api\ClassroomTypeController;
+use App\Http\Controllers\Api\OfferSubjectController;
 use App\Http\Controllers\Api\SemesterController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,29 +17,40 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-// Routes of Semester
+# Routes of Semester
+
+Route::get('/semesters', [SemesterController::class, 'index']);
 Route::prefix('semester')->group(function () {
-  Route::get('/', [SemesterController::class, 'index']);
   Route::post('/store', [SemesterController::class, 'store']);
   Route::get('/{id}/show', [SemesterController::class, 'show']);
   Route::put('/{id}/update', [SemesterController::class, 'update']);
   Route::delete('/{id}/delete', [SemesterController::class, 'destroy']);
 });
 
-//Routes of ClassroomType
+# Routes of ClassroomType
+
+Route::get('/classroomtypes', [ClassroomTypeController::class, 'index']);
 Route::prefix('classroomtype')->group(function () {
-  Route::get('/', [ClassroomTypeController::class, 'index']);
   Route::post('/store', [ClassroomTypeController::class, 'store']);
   Route::get('/{id}/show', [ClassroomTypeController::class, 'show']);
   Route::put('/{id}/update', [ClassroomTypeController::class, 'update']);
   Route::delete('/{id}/delete', [ClassroomTypeController::class, 'destroy']);
 });
 
-//Routes of Classroom
+# Routes of Classroom
+Route::get('/classrooms', [ClassroomController::class, 'index']);
 Route::prefix('classroom')->group(function () {
-  Route::get('/', [ClassroomController::class, 'index']);
   Route::post('/store', [ClassroomController::class, 'store']);
   Route::get('/{id}/show', [ClassroomController::class, 'show']);
   Route::put('/{id}/update', [ClassroomController::class, 'update']);
   Route::delete('/{id}/delete', [ClassroomController::class, 'destroy']);
+});
+
+# Routes of OfferSubjct
+Route::get('/offersubjects', [OfferSubjectController::class, 'index']);
+Route::prefix('offersubject')->group(function () {
+  Route::post('/store', [OfferSubjectController::class, 'store']);
+  Route::get('/{id}/show', [OfferSubjectController::class, 'show']);
+  Route::put('/{id}/update', [OfferSubjectController::class, 'update']);
+  Route::delete('/{id}/delete', [OfferSubjectController::class, 'destroy']);
 });

@@ -15,7 +15,7 @@ class CreateOfferSubjectTimeOnWeekdaysTable extends Migration
   {
     Schema::create('offer_subject_time_on_weekdays', function (Blueprint $table) {
       $table->id();
-      $table->foreignId('offer_subject_id')->references('id')->on('offer_subjects')->cascadeOnDelete()->cascadeOnUpdate();;
+      $table->foreignId('offer_subject_id')->constrained('offer_subjects')->cascadeOnDelete()->cascadeOnUpdate();
       $table->integer('position');
       $table->boolean('active')->default(false);
       $table->timestamps();
