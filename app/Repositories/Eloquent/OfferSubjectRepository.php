@@ -17,7 +17,7 @@ class OfferSubjectRepository extends BaseRepository implements OfferSubjectRepos
 
   public function listOfferSubject()
   {
-    $this->offerSubject->select(
+    return $this->offerSubject->select(
       'id',
       'semester_id',
       'weekday_id',
@@ -26,7 +26,13 @@ class OfferSubjectRepository extends BaseRepository implements OfferSubjectRepos
       'classroom_id',
       'subject_id'
     )
-      ->with('semester:name')
+      ->with('shifts:id,name')
+      ->with('professors:id,name')
+      ->with('subjects:id,name')
+      ->with('classrooms:id,name')
+      ->with('weekdays:id,name')
+      ->with('semesters:id,school_year')
+
       ->get();
   }
 }
