@@ -45,7 +45,8 @@ class Handler extends ExceptionHandler
 
     $this->renderable(function (QueryException $exception, $request) {
       if ($request->is('api/*')) {
-        return response()->json(['massage' => 'Database error, We are working so that you can get back to using our application soon. Come back soon.', 'sql' => $exception->getMessage()], 401);
+        return response()->json(['massage' => 'Database error, We are working so that you can get back to using our application soon. Come back soon.',
+          'sql' => $exception->getMessage()], 401);
       }
     });
 
@@ -63,6 +64,7 @@ class Handler extends ExceptionHandler
       if ($request->is('api/*')) {
         return response()->json([
           'message' => 'Record not found.',
+          'error' => $exception->getMessage(),
         ], 404);
       }
     });

@@ -26,6 +26,7 @@ class OfferSubjectRepository extends BaseRepository implements OfferSubjectRepos
       'classroom_id',
       'subject_id'
     )
+    #join's
       ->with('shifts:id,name')
       ->with('professors:id,name')
       ->with('subjects:id,name')
