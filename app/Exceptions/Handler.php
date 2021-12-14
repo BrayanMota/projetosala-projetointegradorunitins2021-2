@@ -64,7 +64,6 @@ class Handler extends ExceptionHandler
       if ($request->is('api/*')) {
         return response()->json([
           'message' => 'Record not found.',
-          'error' => $exception->getMessage(),
         ], 404);
       }
     });

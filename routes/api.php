@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Api\ClassroomController;
 use App\Http\Controllers\Api\ClassroomTypeController;
+use App\Http\Controllers\Api\MatrixController;
 use App\Http\Controllers\Api\OfferSubjectController;
+use App\Http\Controllers\Api\ProfessorController;
 use App\Http\Controllers\Api\SemesterController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,3 +56,11 @@ Route::prefix('offersubject')->group(function () {
   Route::put('/{id}/update', [OfferSubjectController::class, 'update']);
   Route::delete('/{id}/delete', [OfferSubjectController::class, 'destroy']);
 });
+
+# professor
+Route::get('/professors', [ProfessorController::class, 'index']);
+Route::get('/professors/{filtro}', [ProfessorController::class, 'search']);
+
+# matrix
+Route::get('/matrices', [MatrixController::class, 'index']);
+Route::get('/matrices/{filtro}', [MatrixController::class, 'search']);

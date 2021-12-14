@@ -36,4 +36,9 @@ class OfferSubjectRepository extends BaseRepository implements OfferSubjectRepos
 
       ->get();
   }
+
+  public function createOfferSubject()
+  {
+
+  }
 }
