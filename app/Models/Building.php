@@ -9,14 +9,15 @@ class Building extends Model
   protected $table = 'buildings';
   protected $fillable = [
     'name',
-    'campus_id',
   ];
 
-  public function campus(){
+  public function campus()
+  {
     return $this->belongsTo(Campus::class, 'campus_id');
   }
 
-  public function classrooms(){
+  public function classrooms()
+  {
     return $this->hasMany(Classroom::class);
   }
 }

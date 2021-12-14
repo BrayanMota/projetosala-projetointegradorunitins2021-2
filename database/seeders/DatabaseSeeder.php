@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
   {
     $this->call([ShiftSeeder::class]);
     $this->call([WeekdaySeeder::class]);
+    $this->call([BuildingSeeder::class]);
   }
 }

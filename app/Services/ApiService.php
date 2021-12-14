@@ -32,6 +32,7 @@ class ApiService
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
       "Content-Type: application/json",
+
     ]);
     return json_decode(curl_exec($ch));
 
