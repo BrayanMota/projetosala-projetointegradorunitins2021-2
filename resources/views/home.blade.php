@@ -1,12 +1,23 @@
-@extends('layout')
+@extends('layouts.app')
 
-@section('cabecalho')
-Login
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
-@section('conteudo')
-<h1>Usuario Logado</h1>
-<a href="{{ route('google.login') }}" class="btn btn-google btn-user btn-block">
-    <i class="fab fa-google fa-fw"></i> Login with Google
-</a>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
+                    {{ __('You are logged in!') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

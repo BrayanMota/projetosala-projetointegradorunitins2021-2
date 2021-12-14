@@ -1,54 +1,70 @@
 <?php
-
+  
 namespace App\Http\Controllers\Api;
-
-use App\Http\Controllers\Controller;
-use App\Models\User;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+  
 use Laravel\Socialite\Facades\Socialite;
-
+use App\Http\Controllers\Controller;
+use Exception;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+  
 class GoogleLoginController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function loginWithGoogle()
     {
         return Socialite::driver('google')->redirect();
     }
-    public function loginPage()
-    {
-        return view('login');
-    }
+        
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function callbackFromGoogle()
     {
         try {
-            $user = Socialite::driver('google')->user();
-
-            // Check Users Email If Already There
-            $is_user = User::where('email', $user->getEmail())->first();
-            if(!$is_user){
-
-                $saveUser = User::updateOrCreate([
-                    'google_id' => $user->getId(),
-                ],[
-                    'name' => $user->getName(),
-                    'email' => $user->getEmail(),
-                    'password' => Hash::make($user->getName().'@'.$user->getId())
-                ]);
+      
+            $user = Socialite::driver('google')->stateless()->user();
+       
+            $finduser = User::where('google_id', $user->id)->first();
+       
+            if($finduser){
+       
+                Auth::login($finduser);
+      
+                return redirect('/dashboard');
+       
             }else{
-                $saveUser = User::where('email',  $user->getEmail())->update([
-                    'google_id' => $user->getId(),
+                $newUser = User::create([
+                    'role_id' => 1,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'google_id'=> $user->id,
+                    'password' => encrypt('123456dummy')
                 ]);
-                $saveUser = User::where('email', $user->getEmail())->first();
+      
+                Auth::login($newUser);
+      
+                return redirect('/dashboard');
             }
-
-
-            Auth::loginUsingId($saveUser->id);
-
-            return redirect()->route('home');
-        } catch (\Throwable $th) {
-            throw $th;
+      
+        } catch (Exception $e) {
+            dd($e->getMessage());
         }
+    }
+
+    public function logged()
+    {
+        return view('home');
+    }
+
+    public function perfil()
+    {
+        return dd(Auth::user());
     }
 }

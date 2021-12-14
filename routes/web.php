@@ -1,7 +1,8 @@
 <?php
 
-use Laravel\Sail\Console\PublishCommand;
 use App\Http\Controllers\Api\GoogleLoginController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Route::resource('/semester', 'SemesterController');
@@ -12,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/campus/{id}/courses', 'PublicController@getCoursesByCampusId')->name('public.campus.courses');
 
-Route::get('/loginpage', [GoogleLoginController::class, 'loginPage'])->name('loginpage');
-Route::get('/login', [GoogleLoginController::class, 'loginWithGoogle'])->name('login');
-Route::get('/callback', [GoogleLoginController::class, 'callbackFromGoogle'])->name('callback');
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/dashboard', [GoogleLoginController::class, 'logged'])->name('logged');
+Auth::routes();
+
+Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
+
