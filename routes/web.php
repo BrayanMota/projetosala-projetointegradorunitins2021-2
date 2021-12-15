@@ -19,6 +19,6 @@ Route::get('/', function () {
 Route::get('/dashboard', [GoogleLoginController::class, 'logged'])->name('logged');
 Auth::routes();
 
-Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle']);
-Route::get('auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
+Route::get('auth/google', [GoogleLoginController::class, 'loginWithGoogle']);
+Route::get('auth/google/callback', [GoogleLoginController::class, 'callbackFromGoogle']);
 
