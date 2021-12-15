@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\BuildingController;
 use App\Http\Controllers\Api\ClassroomController;
+use App\Http\Controllers\Api\GoogleLoginController;
 use App\Http\Controllers\Api\MatrixController;
 use App\Http\Controllers\Api\OfferSubjectController;
 use App\Http\Controllers\Api\ProfessorController;
@@ -57,3 +58,5 @@ Route::get('/matrices/{filtro}', [MatrixController::class, 'search']);
 
 # Building
 Route::get('/buildings', [BuildingController::class, 'index']);
+
+Route::get('/profile/{id}',  [GoogleLoginController::class, 'profile'])->name('profile');

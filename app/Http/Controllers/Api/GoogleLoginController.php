@@ -36,7 +36,7 @@ class GoogleLoginController extends Controller
 
         Auth::login($finduser);
 
-        return redirect('/dashboard');
+        return view('home');
 
       } else {
         $newUser = User::create([
@@ -49,7 +49,7 @@ class GoogleLoginController extends Controller
 
         Auth::login($newUser);
 
-        return redirect('/dashboard');
+        return view('home');
       }
 
     } catch (Exception $e) {
@@ -62,8 +62,10 @@ class GoogleLoginController extends Controller
     return view('home');
   }
 
-  public function perfil()
+  public function profile($id)
   {
-    return dd(Auth::user());
+    $user = User::where('id',$id)->get();
+    dd($user);
+    return ;
   }
 }
