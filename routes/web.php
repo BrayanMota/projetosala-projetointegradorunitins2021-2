@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\GoogleLoginController;
-use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 // Route::resource('/semester', 'SemesterController');
@@ -10,15 +9,13 @@ use Illuminate\Support\Facades\Route;
 // Route::resource('/classroom', 'ClassroomController');
 
 // Route::get('/campus/{id}/courses', 'PublicController@getCoursesByCampusId')->name('public.campus.courses');
-
 Route::get('/campus/{id}/courses', 'PublicController@getCoursesByCampusId')->name('public.campus.courses');
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
-Route::get('/dashboard', [GoogleLoginController::class, 'logged'])->name('logged');
-Auth::routes();
 
-Route::get('auth/google', [GoogleLoginController::class, 'redirectToGoogle']);
-Route::get('auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
-
+Route::get('/login', [LoginController::class, 'login']);
+Route::get('/dashboard', [GoogleLoginController::class, 'loginWithGoogle'])->name('logged');
+Route::get('/auth/google', [GoogleLoginController::class, 'loginWithGoogle']);
+Route::get('/callback', [GoogleLoginController::class, 'callbackFromGoogle']);

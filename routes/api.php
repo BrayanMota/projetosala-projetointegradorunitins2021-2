@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Api\BuildingController;
 use App\Http\Controllers\Api\ClassroomController;
-use App\Http\Controllers\Api\ClassroomTypeController;
 use App\Http\Controllers\Api\MatrixController;
 use App\Http\Controllers\Api\OfferSubjectController;
 use App\Http\Controllers\Api\ProfessorController;
@@ -28,16 +27,6 @@ Route::prefix('semester')->group(function () {
   Route::get('/{id}/show', [SemesterController::class, 'show']);
   Route::put('/{id}/update', [SemesterController::class, 'update']);
   Route::delete('/{id}/delete', [SemesterController::class, 'destroy']);
-});
-
-# Routes of ClassroomType
-
-Route::get('/classroomtypes', [ClassroomTypeController::class, 'index']);
-Route::prefix('classroomtype')->group(function () {
-  Route::post('/store', [ClassroomTypeController::class, 'store']);
-  Route::get('/{id}/show', [ClassroomTypeController::class, 'show']);
-  Route::put('/{id}/update', [ClassroomTypeController::class, 'update']);
-  Route::delete('/{id}/delete', [ClassroomTypeController::class, 'destroy']);
 });
 
 # Routes of Classroom
