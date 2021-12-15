@@ -18,9 +18,9 @@ class CreateOfferSubjectTable extends Migration
       $table->foreignId('semester_id')->constrained('semesters')->cascadeOnDelete()->cascadeOnUpdate();
       $table->foreignId('weekday_id')->constrained('weekdays')->cascadeOnDelete()->cascadeOnUpdate();
       $table->foreignId('shift_id')->constrained('shifts')->cascadeOnDelete()->cascadeOnUpdate();
-      $table->foreignId('professor_id')->constrained('professors')->cascadeOnDelete()->cascadeOnUpdate();
+      $table->foreignId('professor')->constrained('professors')->cascadeOnDelete()->cascadeOnUpdate();
+      $table->foreignId('subject')->constrained('subjects')->cascadeOnDelete()->cascadeOnUpdate();
       $table->foreignId('classroom_id')->constrained('classrooms')->cascadeOnDelete()->cascadeOnUpdate();
-      $table->foreignId('subject_id')->constrained('subjects')->cascadeOnDelete()->cascadeOnUpdate();
       $table->timestamps();
     });
   }

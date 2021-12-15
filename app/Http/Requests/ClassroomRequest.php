@@ -26,7 +26,6 @@ class ClassroomRequest extends FormRequest
     return [
       'name' => ['required'],
       'building_id' => ['required'],
-      'classroom_type_id' => ['required'],
       'max_students' => ['required'],
     ];
   }

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repositories\Eloquent\BuildingRepository;
 use App\Repositories\Eloquent\CampusRepository;
 use App\Repositories\Eloquent\OfferSubjectRepository;
+use App\Repositories\Interfaces\Eloquent\BuildingRepositoryInterface;
 use App\Repositories\Interfaces\Eloquent\CampusRepositoryInterface;
 use App\Repositories\Interfaces\Eloquent\OfferSubjectRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -20,8 +22,11 @@ class RepositoryServiceProvider extends ServiceProvider
     # Campus
     $this->app->bind(CampusRepositoryInterface::class, CampusRepository::class);
 
-    #Offer subject
+    # Offer subject
     $this->app->bind(OfferSubjectRepositoryInterface::class, OfferSubjectRepository::class);
+
+    # Building
+    $this->app->bind(BuildingRepositoryInterface::class, BuildingRepository::class);
   }
 
   /**
