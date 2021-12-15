@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BuildingController;
 use App\Http\Controllers\Api\ClassroomController;
 use App\Http\Controllers\Api\ClassroomTypeController;
 use App\Http\Controllers\Api\MatrixController;
@@ -64,3 +65,6 @@ Route::get('/professors/{filtro}', [ProfessorController::class, 'search']);
 # matrix
 Route::get('/matrices', [MatrixController::class, 'index']);
 Route::get('/matrices/{filtro}', [MatrixController::class, 'search']);
+
+# Building
+Route::get('/buildings', [BuildingController::class, 'index']);

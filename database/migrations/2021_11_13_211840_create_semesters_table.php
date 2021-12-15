@@ -16,8 +16,8 @@ class CreateSemestersTable extends Migration
     Schema::create('semesters', function (Blueprint $table) {
       $table->id();
       $table->string('school_year');
-      $table->foreignId('course_id')->constrained('courses')->cascadeOnDelete()->cascadeOnUpdate();
-      $table->foreignId('matrix_curricular_id')->constrained('curriculum_matrices')->cascadeOnDelete()->cascadeOnUpdate();;
+      $table->string('course', 200);
+      $table->string('matrix', 200);
       $table->timestamps();
     });
   }
