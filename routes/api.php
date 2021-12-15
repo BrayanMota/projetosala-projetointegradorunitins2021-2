@@ -47,11 +47,11 @@ Route::prefix('offersubject')->group(function () {
   Route::delete('/{id}/delete', [OfferSubjectController::class, 'destroy']);
 });
 
-# professor
+# Professor
 Route::get('/professors', [ProfessorController::class, 'index']);
 Route::get('/professors/{filtro}', [ProfessorController::class, 'search']);
 
-# matrix
+# Matrix
 Route::get('/matrices', [MatrixController::class, 'index']);
 Route::get('/matrices/{filtro}', [MatrixController::class, 'search']);
 

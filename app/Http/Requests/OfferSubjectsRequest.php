@@ -27,9 +27,9 @@ class OfferSubjectsRequest extends FormRequest
       'semester_id' => ['required'],
       'weekday_id' => ['required'],
       'shift_id' => ['required'],
-      'professor_id' => ['required'],
+      'professor' => ['required'],
       'classroom_id' => ['required'],
-      'subject_id' => ['required'],
+      'subject' => ['required'],
     ];
   }
 }

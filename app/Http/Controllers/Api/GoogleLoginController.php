@@ -28,7 +28,6 @@ class GoogleLoginController extends Controller
   public function callbackFromGoogle()
   {
     try {
-
       $user = Socialite::driver('google')->stateless()->user();
 
       $finduser = User::where('google_id', $user->id)->first();

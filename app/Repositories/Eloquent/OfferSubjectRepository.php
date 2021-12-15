@@ -22,14 +22,12 @@ class OfferSubjectRepository extends BaseRepository implements OfferSubjectRepos
       'semester_id',
       'weekday_id',
       'shift_id',
-      'professor_id',
+      'professor',
       'classroom_id',
       'subject_id'
     )
     #join's
       ->with('shifts:id,name')
-      ->with('professors:id,name')
-      ->with('subjects:id,name')
       ->with('classrooms:id,name')
       ->with('weekdays:id,name')
       ->with('semesters:id,school_year')

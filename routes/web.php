@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\GoogleLoginController;
-use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 // Route::resource('/semester', 'SemesterController');
@@ -15,7 +14,6 @@ Route::get('/', function () {
   return view('welcome');
 });
 
-Route::get('/login', [LoginController::class, 'login']);
-Route::get('/dashboard', [GoogleLoginController::class, 'loginWithGoogle'])->name('logged');
-Route::get('/auth/google', [GoogleLoginController::class, 'loginWithGoogle']);
-Route::get('/callback', [GoogleLoginController::class, 'callbackFromGoogle']);
+Route::get('/dashboard', [GoogleLoginController::class, 'logged'])->name('logged');
+Route::get('auth/google', [GoogleLoginController::class, 'loginWithGoogle']);
+Route::get('auth/google/callback', [GoogleLoginController::class, 'callbackFromGoogle']);
