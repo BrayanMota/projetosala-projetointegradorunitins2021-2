@@ -17,8 +17,7 @@ class CreateSemestersTable extends Migration
       $table->id();
       $table->string('school_year');
       $table->string('course', 200);
-      $table->string('matrix', 200);
-      $table->string('curriculum_matrices');
+      $table->string('matrix_curricular_id');
       $table->timestamps();
     });
   }

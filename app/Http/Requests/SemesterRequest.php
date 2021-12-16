@@ -25,7 +25,7 @@ class SemesterRequest extends FormRequest
   {
     return [
       'school_year' => ['required'],
-      'course_id' => ['required'],
+      'course' => ['required'],
       'matrix_curricular_id' => ['required'],
     ];
   }

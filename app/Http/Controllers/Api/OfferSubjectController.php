@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Exceptions\ModelUpdateNotFound;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OfferSubjectsRequest;
+use App\Models\OfferSubjectOnTimeWeekday;
 use App\Repositories\Interfaces\Eloquent\OfferSubjectRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 
 class OfferSubjectController extends Controller
 {
@@ -25,8 +27,24 @@ class OfferSubjectController extends Controller
 
   public function store(OfferSubjectsRequest $request)
   {
-    $data = $request->all();
-    $this->offerSubjectRepository->store($data);
+    $data = $request->offer_subjects;
+    $period = $request->period;
+    foreach ($data as $offerSubject) {
+      DB::transaction(function () use ($offerSubject, $period) {
+        $data_offersubject = $this->offerSubjectRepository->store([
+          'semester_id' => $offerSubject['semester_id'],
+          'weekday_id' => $offerSubject['weekday_id'],
+          'shift_id' => $offerSubject['shift_id'],
+          'professor' => $offerSubject['professor'],
+          'classroom_id' => $offerSubject['classroom_id'],
+          'subject_id' => $offerSubject['subject'],
+          'period' => $period,
+        ]);
+        $data_offersubjectOnTimeWeekdays = $offerSubject['offer_subject_time_on_weekdays'];
+        $data_offersubjectOnTimeWeekdays['offer_subject_id'] = $data_offersubject->id;
+        OfferSubjectOnTimeWeekday::create($data_offersubjectOnTimeWeekdays);
+      });
+    }
 
     return response()->json(['message' => 'OfferSubject successfully save'], 201);
   }

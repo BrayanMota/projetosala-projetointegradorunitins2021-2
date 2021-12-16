@@ -11,9 +11,10 @@ class OfferSubject extends Model
     'semester_id',
     'weekday_id',
     'shift_id',
-    'professor_id',
+    'professor',
     'classroom_id',
     'subject_id',
+    'period',
   ];
 
   public function semesters()

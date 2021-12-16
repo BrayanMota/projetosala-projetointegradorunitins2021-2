@@ -24,12 +24,7 @@ class OfferSubjectsRequest extends FormRequest
   public function rules()
   {
     return [
-      'semester_id' => ['required'],
-      'weekday_id' => ['required'],
-      'shift_id' => ['required'],
-      'professor' => ['required'],
-      'classroom_id' => ['required'],
-      'subject' => ['required'],
+      'offer_subjects' => ['array', 'required'],
     ];
   }
 }
