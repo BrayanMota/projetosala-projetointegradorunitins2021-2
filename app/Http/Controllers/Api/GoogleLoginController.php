@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\GoogleLoginRequest;
 use App\Models\User;
 use Exception;
-use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -27,11 +25,11 @@ class GoogleLoginController extends Controller
    *
    * @return void
    */
-  public function callbackFromGoogle(GoogleLoginRequest $request)
+  public function callbackFromGoogle()
   {
-    $data = $request->validate([
-      'email' => ['regex:/^[A-Za-z0-9]+[@][u][n][i][t][i][n][s][.][b][r]$/'],
-    ]);
+    // $data = $request->validate([
+    //   'email' => ['regex:/^[A-Za-z0-9]+[@][u][n][i][t][i][n][s][.][b][r]$/'],
+    // ]);
 
     try {
 
@@ -42,7 +40,7 @@ class GoogleLoginController extends Controller
       if ($finduser) {
 
         Auth::login($finduser);
-        return response()->json(['message' => 'Usuario logado com sucesso'],200);
+        return response()->json(['message' => 'Usuario logado com sucesso'], 200);
 
       } else {
         $newUser = User::create([
@@ -53,28 +51,28 @@ class GoogleLoginController extends Controller
           'password' => encrypt('123456dummy'),
         ]);
         Auth::login($newUser);
-        return response()->json(['message' => 'Usuario logado com sucesso'],200);
+        return response()->json(['message' => 'Usuario logado com sucesso'], 200);
       }
 
     } catch (Exception $e) {
-      return response()->json(['message' => 'Falha ao entrar tente novamente mais tarde'],500);
+      dd($e);
+      return response()->json(['message' => 'Falha ao entrar tente novamente mais tarde'], 500);
     }
   }
 
   public function profile()
   {
     $users = auth()->user();
-    return response()->json(['name' => $users->name,'email' => $users->email],200);
+    return response()->json(['name' => $users->name, 'email' => $users->email], 200);
   }
 
   public function logout()
   {
     $users = auth()->user();
-    if($users == null)
-    {
-      return response()->json(['message' => 'Falha ao deslogar'],500);
+    if ($users == null) {
+      return response()->json(['message' => 'Falha ao deslogar'], 500);
     }
     auth()->logout();
-    return response()->json(['message' => 'Logout realizado com sucesso'],200);
+    return response()->json(['message' => 'Logout realizado com sucesso'], 200);
   }
 }

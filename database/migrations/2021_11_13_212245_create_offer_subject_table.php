@@ -20,6 +20,7 @@ class CreateOfferSubjectTable extends Migration
       $table->foreignId('shift_id')->constrained('shifts')->cascadeOnDelete()->cascadeOnUpdate();
       $table->string('professor');
       $table->string('subject_id');
+      $table->integer('period');
       $table->foreignId('classroom_id')->constrained('classrooms')->cascadeOnDelete()->cascadeOnUpdate();
       $table->timestamps();
     });

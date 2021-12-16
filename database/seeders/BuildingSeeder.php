@@ -8,10 +8,9 @@ use Illuminate\Database\Seeder;
 class BuildingSeeder extends Seeder
 {
   private $buildings = [
-
-    ['name' => 'Bloco A'],
-    ['name' => 'Bloco B'],
-    ['name' => 'Bloco C'],
+    ['name' => 'Bloco A', 'campus' => 'Campus Palmas'],
+    ['name' => 'Bloco B', 'campus' => 'Campus Palmas'],
+    ['name' => 'Bloco C', 'campus' => 'Campus Palmas'],
   ];
 
   public function run()
@@ -19,6 +18,7 @@ class BuildingSeeder extends Seeder
     foreach ($this->buildings as $building) {
       Building::create([
         'name' => $building['name'],
+        'campus' => $building['campus'],
       ]);
     }
 

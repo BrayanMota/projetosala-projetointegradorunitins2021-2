@@ -10,20 +10,22 @@ class Classroom extends Model
   protected $fillable = [
     'name',
     'building_id',
-    'classroom_type_id',
     'max_students',
+    'description',
   ];
 
   public function buildings()
   {
     return $this->belongsTo(Building::class, 'building_id');
   }
-  
-  public function classroom_types(){
+
+  public function classroom_types()
+  {
     return $this->belongsTo(ClassroomType::class, 'classroom_type_id');
   }
 
-  public function offer_subjects() {
+  public function offer_subjects()
+  {
     return $this->hasOne(OfferSubject::class);
   }
 }
