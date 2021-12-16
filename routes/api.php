@@ -59,4 +59,9 @@ Route::get('/matrices/{filtro}', [MatrixController::class, 'search']);
 # Building
 Route::get('/buildings', [BuildingController::class, 'index']);
 
-Route::get('/profile/{id}',  [GoogleLoginController::class, 'profile'])->name('profile');
+#Login com Google
+Route::group(['middleware' => ['web']], function () {
+  Route::get('auth/google', [GoogleLoginController::class, 'loginWithGoogle']);
+});
+Route::post('logout', [GoogleLoginController::class, 'logout']);
+
