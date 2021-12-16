@@ -41,8 +41,12 @@ class OfferSubjectController extends Controller
           'period' => $period,
         ]);
         $data_offersubjectOnTimeWeekdays = $offerSubject['offer_subject_time_on_weekdays'];
-        $data_offersubjectOnTimeWeekdays['offer_subject_id'] = $data_offersubject->id;
-        OfferSubjectOnTimeWeekday::create($data_offersubjectOnTimeWeekdays);
+        foreach ($data_offersubjectOnTimeWeekdays as $data_offersubjectOnTimeWeekday) {
+          $data = $data_offersubjectOnTimeWeekday;
+          $data['offer_subject_id'] = $data_offersubject->id;
+          $data['active'] = true;
+          OfferSubjectOnTimeWeekday::create($data);
+        }
       });
     }
 
