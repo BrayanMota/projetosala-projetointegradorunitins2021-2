@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Models\OfferSubjectOnTimeWeekday;
 use App\Models\OfferSubjectTimeOnWeekday;
 use App\Repositories\Interfaces\Eloquent\OfferSubjectTimeOnWeekdayRepositoryInterface;
 
@@ -9,7 +10,7 @@ class OfferSubjectTimeOnWeekdayRepository extends BaseRepository implements Offe
 {
   private $OfferSubjectTimeOnWeekday;
 
-  public function __construct(OfferSubjectTimeOnWeekday $model)
+  public function __construct(OfferSubjectOnTimeWeekday $model)
   {
     parent::__construct($model);
     $this->OfferSubjectTimeOnWeekday = $model;
