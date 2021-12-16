@@ -27,21 +27,17 @@ class GoogleLoginController extends Controller
    */
   public function callbackFromGoogle()
   {
-    // $data = $request->validate([
-    //   'email' => ['regex:/^[A-Za-z0-9]+[@][u][n][i][t][i][n][s][.][b][r]$/'],
-    // ]);
+
 
     try {
-
       $user = Socialite::driver('google')->stateless()->user();
 
-      $finduser = User::where('google_id', $user->id)->first();
+      $finduser = User::where('google_id', $user->id)->get();
 
       if ($finduser) {
-
         Auth::login($finduser);
-        return response()->json(['message' => 'Usuario logado com sucesso'], 200);
 
+        return response()->json(['message' => 'Usuario logado com sucesso'],200);
       } else {
         $newUser = User::create([
           'role_id' => 1,
@@ -56,7 +52,7 @@ class GoogleLoginController extends Controller
 
     } catch (Exception $e) {
       dd($e);
-      return response()->json(['message' => 'Falha ao entrar tente novamente mais tarde'], 500);
+      return response()->json(['message' => 'Falha ao entrar tente novamente mais tarde'],500);
     }
   }
 
