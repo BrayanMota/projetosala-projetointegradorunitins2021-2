@@ -58,10 +58,11 @@ Route::get('/matrices/{filtro}', [MatrixController::class, 'search']);
 
 # Building
 Route::get('/buildings', [BuildingController::class, 'index']);
-
+Route::prefix('/building')->group(function () {
+  Route::post('/store', [BuildingController::class, 'store']);
+});
 #Login com Google
 Route::group(['middleware' => ['web']], function () {
   Route::get('auth/google', [GoogleLoginController::class, 'loginWithGoogle']);
 });
 Route::post('logout', [GoogleLoginController::class, 'logout']);
-
